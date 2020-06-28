@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e4b2b03316.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('home') }}">Académica</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('verCarreras')}}">Carreras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Estudiantes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+</body>
+</html>
