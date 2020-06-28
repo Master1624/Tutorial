@@ -16,7 +16,9 @@
         <label class="form-control-label">Extensión de la Carrera</label>
         <input type="text" class="form-control form-control-lg" value="{{ carrera.2 }}" readonly>
     </div>
+    <a class="btn btn-outline-secondary" href="{{ url_for('verCarreras') }}">Atrás</a>
     <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteModal">Eliminar Carrera</button>
+    <a class="btn btn-outline-success float-right" href="{{ url_for('modificarCarrera', id_carrera = carrera.0) }}">Modificar Carrera</a>
 </div>
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

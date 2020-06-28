@@ -43,8 +43,30 @@ def verCarrera(id_carrera):
     datos = cursor.fetchone()
     return render_template('verCarrera.html', carrera = datos)
 
-def modificar():
-    pass
+@app.route('/carrera/<int:id_carrera>/modificar', methods=['GET', 'POST'])
+def modificarCarrera(id_carrera):
+    form = CarreraForm()
+    if form.validate_on_submit():
+        ident = form.identificacion.data
+        nombre = form.nombre.data
+        ext = form.extension.data
+
+        args = (ident, nombre, ext, id_carrera)
+
+        cursor = db.connection.cursor()
+        cursor.callproc('modificarCarrera', args)
+        db.connection.commit()
+        flash(f'Ha modificado de manera correcta la carrera de {form.nombre.data}!', 'success')
+        return redirect(url_for('verCarreras'))
+    elif request.method == 'GET':
+        cursor = db.connection.cursor()
+        cursor.callproc('verCarrera', [id_carrera])
+        for carrera in cursor.fetchall():
+            form.identificacion.data = carrera[0]
+            form.nombre.data = carrera[1]
+            form.extension.data = carrera[2]
+
+    return render_template('modificarCarrera.html', form = form)
 
 @app.route('/carrera/<int:id_carrera>/eliminar', methods=['GET', 'POST'])
 def eliminarCarrera(id_carrera):
